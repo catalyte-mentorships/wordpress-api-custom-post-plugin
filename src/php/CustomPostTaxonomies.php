@@ -1,11 +1,11 @@
 <?php
 
-namespace App\MuPlugins\CustomPostType;
+namespace App\PassionPlugins\CustomPostType;
 
 /**
  * @author Keith Murphy || nomadmystics@gmail.com
  * Class CustomPostTaxonomies
- * @package App\MuPlugins\CustomPostType
+ * @package App\PassionPlugins\CustomPostType
  */
 
 class CustomPostTaxonomies
@@ -17,27 +17,27 @@ class CustomPostTaxonomies
      */
     public function init()
     {
-        add_action('init', [&$this, 'create_past_exhibits_tax']);
-        add_action('init', [&$this, 'create_current_exhibits_tax']);
-        add_action('init', [&$this, 'create_future_exhibits_tax']);
+        add_action('init', [&$this, 'create_passion_faqs_tax']);
     }
 
-    /**
-     * @author Keith Murphy || nomadmystics@gmail.com
-     * @description Factory for creating custom taxonomies for custom post types
-     * @param String $taxonomy
-     * @param String $post_type
-     * @param String $name
-     * @param String $singular_name
-     * @param String $textdomain
-     * @return void
-     */
+	/**
+	 * @author Keith Murphy || nomadmystics@gmail.com
+	 * @description Factory for creating custom taxonomies for custom post types
+	 * @param String $taxonomy
+	 * @param String $post_type
+	 * @param String $name
+	 * @param String $singular_name
+	 * @param String $rewrite_slug
+	 * @param String $textdomain
+	 * @return void
+	 */
     private function custom_tax_factory(
         String $taxonomy,
         String $post_type,
         String $name,
         String $singular_name,
-        String $textdomain = 'museum'
+        String $rewrite_slug,
+        String $textdomain = 'passion'
     ):void {
         // Add new taxonomy, make it hierarchical (like categories)
         $labels = [
@@ -60,7 +60,7 @@ class CustomPostTaxonomies
             'show_ui'           => true,
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => ['slug' => 'past_exhibits'],
+            'rewrite'           => ['slug' => $rewrite_slug],
         ];
 
         register_taxonomy($taxonomy, $post_type, $args);
@@ -69,46 +69,17 @@ class CustomPostTaxonomies
 
     /**
      * @author Keith Murphy || nomadmystics@gmail.com
-     * @description Creates a custom taxonomy for Past Exhibits custom post type
+     * @description Creates a custom taxonomy for Passion FAQs custom post type
      * @return void
      */
-    public function create_past_exhibits_tax():void
+    public function create_passion_faqs_tax():void
     {
-        $post_type = 'past_exhibits';
-        $taxonomy = 'past_exhibits';
-        $name = 'Past Exhibits Tax';
-        $singular_name = 'Past Exhibit Tax';
+        $post_type = 'passion_faqs';
+        $taxonomy = 'passion_faqs';
+        $name = 'Passion FAQs Taxonomies';
+        $singular_name = 'Passion FAQ Taxonomy';
+		$rewrite_slug = 'passion_faqs';
 
-        $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name);
-    }
-
-    /**
-     * @author Keith Murphy || nomadmystics@gmail.com
-     * @description Creates a custom taxonomy for Current Exhibits custom post type
-     * @return void
-     */
-    public function create_current_exhibits_tax():void
-    {
-        $post_type = 'current_exhibits';
-        $taxonomy = 'current_exhibits';
-        $name = 'Current Exhibits Tax';
-        $singular_name = 'Current Exhibit Tax';
-
-        $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name);
-    }
-
-    /**
-     * @author Keith Murphy || nomadmystics@gmail.com
-     * @description Creates a custom taxonomy for Future Exhibits custom post type
-     * @return void
-     */
-    public function create_future_exhibits_tax():void
-    {
-        $post_type = 'future_exhibits';
-        $taxonomy = 'future_exhibits';
-        $name = 'Future Exhibits Tax';
-        $singular_name = 'Future Exhibit Tax';
-
-        $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name);
+        $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name, $rewrite_slug);
     }
 }

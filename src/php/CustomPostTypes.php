@@ -1,10 +1,10 @@
 <?php
-namespace App\MuPlugins\CustomPostType;
+namespace App\PassionPlugins\CustomPostType;
 
 /**
  * @author Keith Murphy || nomadmystics@gmail.com
  * Class CustomPostTypes
- * @package App\MuPlugins\CustomPostType
+ * @package App\PassionPlugins\CustomPostType
  */
 class CustomPostTypes
 {
@@ -15,9 +15,7 @@ class CustomPostTypes
      */
     public function init():void
     {
-        add_action('init', [&$this, 'museum_past_exhibits']);
-        add_action('init', [&$this, 'museum_current_exhibits']);
-        add_action('init', [&$this, 'museum_future_exhibits']);
+        add_action('init', [&$this, 'passion_faqs']);
     }
 
     /**
@@ -73,55 +71,17 @@ class CustomPostTypes
 
     /**
      * @author Keith Murphy || nomadmystics@gmail.com
-     * @description This will build the custom post type for Past Exhibits from the British Museum
+     * @description This will build the custom post type for Passion Impact FAQs throughout the site templates
      * @return void
      */
-    public function museum_past_exhibits():void
+    public function passion_faqs():void
     {
-        $post_type = 'past_exhibits';
-        $name = __('Past Exhibits');
-        $singular_name = __('Past Exhibit');
+        $post_type = 'passion_faqs';
+        $name = __('FAQs');
+        $singular_name = __('FAQ');
         $is_public = true;
         $has_archive = true;
-        $rewrite_slug = 'past-exhibits';
-        $menu_position = 5;
-
-        $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);
-    }
-
-    /**
-     * @author Keith Murphy || nomadmystics@gmail.com
-     * @description This will build the custom post type for Current Exhibits from the British Museum
-     * SUBJECT TO CHANGE
-     * @return void
-     */
-    public function museum_current_exhibits():void
-    {
-        $post_type = 'current_exhibits';
-        $name = __('Current Exhibits');
-        $singular_name = __('Current Exhibit');
-        $is_public = true;
-        $has_archive = true;
-        $rewrite_slug = 'current-exhibits';
-        $menu_position = 4;
-
-        $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);
-    }
-
-    /**
-     * @author Keith Murphy || nomadmystics@gmail.com
-     * @description This will build the custom post type for Future Exhibits from the British Museum
-     * SUBJECT TO CHANGE
-     * @return void
-     */
-    public function museum_future_exhibits():void
-    {
-        $post_type = 'future_exhibits';
-        $name = __('Future Exhibits');
-        $singular_name = __('Future Exhibit');
-        $is_public = true;
-        $has_archive = true;
-        $rewrite_slug = 'future-exhibits';
+        $rewrite_slug = 'passion_faqs';
         $menu_position = 5;
 
         $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);

@@ -1,8 +1,8 @@
 <?php
-namespace App\MuPlugins\CustomPostType;
+namespace App\PassionPlugins\CustomPostType;
 
 /**
- * Plugin Name: Custom Post Types
+ * Plugin Name: Passion Custom Post Types
  * Description: This is a basic custom post types initializer. This will extend later after some refactoring
  * Version: 1.0.0
  * Author: Keith Murphy
@@ -10,7 +10,7 @@ namespace App\MuPlugins\CustomPostType;
  * License: GPL2
  *
  * @Class CustomPostTypes
- * @package wordpress-muplugin
+ * @package wordpress-plugin
  */
 
 
@@ -30,7 +30,7 @@ function custom_post_autoloader(String $class_name):void {
         require_once($required_class);
     }
 }
-spl_autoload_register('App\MuPlugins\CustomPostType\custom_post_autoloader');
+spl_autoload_register('App\PassionPlugins\CustomPostType\custom_post_autoloader');
 
 /**
  * @author Keith Murphy || nomadmystics@gamil.com
@@ -39,19 +39,14 @@ spl_autoload_register('App\MuPlugins\CustomPostType\custom_post_autoloader');
  */
 function custom_post_init():void
 {
-    if (class_exists('App\MuPlugins\CustomPostType\CustomPostTypesAdminTesting')) {
-        $customPostTypesAdmin = new CustomPostTypesAdminTesting();
-        $customPostTypesAdmin->init();
-    }
-
-    if (class_exists('App\MuPlugins\CustomPostType\CustomPostTypes')) {
+    if (class_exists('App\PassionPlugins\CustomPostType\CustomPostTypes')) {
         $customPostTypes = new CustomPostTypes();
         $customPostTypes->init();
     }
 
-    if (class_exists('App\MuPlugins\CustomPostType\CustomPostTaxonomies')) {
+    if (class_exists('App\PassionPlugins\CustomPostType\CustomPostTaxonomies')) {
         $customPostTaxonomies = new CustomPostTaxonomies();
         $customPostTaxonomies->init();
     }
 }
-add_action('plugins_loaded', 'App\MuPlugins\CustomPostType\custom_post_init');
+add_action('plugins_loaded', 'App\PassionPlugins\CustomPostType\custom_post_init');
