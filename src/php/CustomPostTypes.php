@@ -15,7 +15,8 @@ class CustomPostTypes
      */
     public function init():void
     {
-        add_action('init', [&$this, 'passion_faqs']);
+        add_action('init', [&$this, 'create_passion_faqs_posts']);
+        add_action('init', [&$this, 'create_passion_slides_posts']);
     }
 
     /**
@@ -74,14 +75,32 @@ class CustomPostTypes
      * @description This will build the custom post type for Passion Impact FAQs throughout the site templates
      * @return void
      */
-    public function passion_faqs():void
+    public function create_passion_faqs_posts():void
     {
         $post_type = 'passion_faqs';
         $name = __('FAQs');
         $singular_name = __('FAQ');
         $is_public = true;
         $has_archive = true;
-        $rewrite_slug = 'passion_faqs';
+        $rewrite_slug = 'passion_faqs_post';
+        $menu_position = 5;
+
+        $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);
+    }
+
+    /**
+     * @author Keith Murphy || nomadmystics@gmail.com
+     * @description This will build the custom post type for Passion Impact Sliders throughout the site templates
+     * @return void
+     */
+    public function create_passion_slides_posts():void
+    {
+        $post_type = 'passion_slides';
+        $name = __('Slides');
+        $singular_name = __('Slide');
+        $is_public = true;
+        $has_archive = true;
+        $rewrite_slug = 'passion-slides-post';
         $menu_position = 5;
 
         $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);
