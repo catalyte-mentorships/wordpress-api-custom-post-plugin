@@ -18,6 +18,7 @@ class CustomPostTaxonomies
     public function init()
     {
         add_action('init', [&$this, 'create_passion_faqs_tax']);
+        add_action('init', [&$this, 'create_passion_slides_tax']);
     }
 
 	/**
@@ -78,7 +79,23 @@ class CustomPostTaxonomies
         $taxonomy = 'passion_faqs';
         $name = 'Passion FAQs Taxonomies';
         $singular_name = 'Passion FAQ Taxonomy';
-		$rewrite_slug = 'passion_faqs';
+		$rewrite_slug = 'passion-faqs-tax';
+
+        $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name, $rewrite_slug);
+    }
+
+    /**
+     * @author Keith Murphy || nomadmystics@gmail.com
+     * @description Creates a custom taxonomy for Passion Slides custom post type
+     * @return void
+     */
+    public function create_passion_slides_tax():void
+    {
+        $post_type = 'passion_slides';
+        $taxonomy = 'passion_slides';
+        $name = 'Passion Slides Taxonomies';
+        $singular_name = 'Passion Slide Taxonomy';
+		$rewrite_slug = 'passion-slides-tax';
 
         $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name, $rewrite_slug);
     }
