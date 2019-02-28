@@ -82,7 +82,7 @@ class CustomPostTypes
         $singular_name = __('FAQ');
         $is_public = true;
         $has_archive = true;
-        $rewrite_slug = 'passion_faqs_post';
+        $rewrite_slug = 'passion-faqs-post';
         $menu_position = 5;
 
         $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);
