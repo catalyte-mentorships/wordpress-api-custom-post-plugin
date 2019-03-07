@@ -1,5 +1,5 @@
 <?php
-namespace App\PassionPlugins\CustomPostType;
+namespace App\WordpressAPIPlugins\CustomPostType;
 
 /**
  * Plugin Name: Passion Custom Post Types
@@ -30,7 +30,7 @@ function custom_post_autoloader(String $class_name):void {
         require_once($required_class);
     }
 }
-spl_autoload_register('App\PassionPlugins\CustomPostType\custom_post_autoloader');
+spl_autoload_register('App\WordpressAPIPlugins\CustomPostType\custom_post_autoloader');
 
 /**
  * @author Keith Murphy || nomadmystics@gamil.com
@@ -39,14 +39,14 @@ spl_autoload_register('App\PassionPlugins\CustomPostType\custom_post_autoloader'
  */
 function custom_post_init():void
 {
-    if (class_exists('App\PassionPlugins\CustomPostType\CustomPostTypes')) {
+    if (class_exists('App\WordpressAPIPlugins\CustomPostType\CustomPostTypes')) {
         $customPostTypes = new CustomPostTypes();
         $customPostTypes->init();
     }
 
-    if (class_exists('App\PassionPlugins\CustomPostType\CustomPostTaxonomies')) {
+    if (class_exists('App\WordpressAPIPlugins\CustomPostType\CustomPostTaxonomies')) {
         $customPostTaxonomies = new CustomPostTaxonomies();
         $customPostTaxonomies->init();
     }
 }
-add_action('plugins_loaded', 'App\PassionPlugins\CustomPostType\custom_post_init');
+add_action('plugins_loaded', 'App\WordpressAPIPlugins\CustomPostType\custom_post_init');

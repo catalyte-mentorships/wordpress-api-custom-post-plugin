@@ -1,10 +1,10 @@
 <?php
-namespace App\PassionPlugins\CustomPostType;
+namespace App\WordpressAPIPlugins\CustomPostType;
 
 /**
  * @author Keith Murphy || nomadmystics@gmail.com
  * Class CustomPostTypes
- * @package App\PassionPlugins\CustomPostType
+ * @package App\WordpressAPIPlugins\CustomPostType
  */
 class CustomPostTypes
 {
@@ -15,8 +15,7 @@ class CustomPostTypes
      */
     public function init():void
     {
-        add_action('init', [&$this, 'create_passion_faqs_posts']);
-        add_action('init', [&$this, 'create_passion_slides_posts']);
+        add_action('init', [&$this, 'create_api_current_exhibits_posts']);
     }
 
     /**
@@ -40,7 +39,7 @@ class CustomPostTypes
         Bool $has_archive = true,
         String $rewrite_slug = '',
         Int $menu_position = 1,
-        String $textdomain = 'museum'
+        String $textdomain = 'api'
     ):void {
         register_post_type($post_type,
             [
@@ -62,6 +61,7 @@ class CustomPostTypes
                 ],
                 'public' => $is_public,
                 'has_archive' => $has_archive,
+                'show_in_rest' => true,
                 'rewrite' => ['slug' => $rewrite_slug],
                 'supports' => ['title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'page-attributes', 'post-formats',],
                 'taxonomies' => ['category'],
@@ -72,35 +72,17 @@ class CustomPostTypes
 
     /**
      * @author Keith Murphy || nomadmystics@gmail.com
-     * @description This will build the custom post type for Passion Impact FAQs throughout the site templates
+     * @description This will build the custom post type for Current Exhibits that can be called from the Wordpress API
      * @return void
      */
-    public function create_passion_faqs_posts():void
+    public function create_api_current_exhibits_posts():void
     {
-        $post_type = 'passion_faqs';
-        $name = __('FAQs');
-        $singular_name = __('FAQ');
+        $post_type = 'current_exhibits';
+        $name = __('Current Exhibits');
+        $singular_name = __('Current Exhibit');
         $is_public = true;
         $has_archive = true;
-        $rewrite_slug = 'passion-faqs-post';
-        $menu_position = 5;
-
-        $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);
-    }
-
-    /**
-     * @author Keith Murphy || nomadmystics@gmail.com
-     * @description This will build the custom post type for Passion Impact Sliders throughout the site templates
-     * @return void
-     */
-    public function create_passion_slides_posts():void
-    {
-        $post_type = 'passion_slides';
-        $name = __('Slides');
-        $singular_name = __('Slide');
-        $is_public = true;
-        $has_archive = true;
-        $rewrite_slug = 'passion-slides-post';
+        $rewrite_slug = 'current-exhibits-post';
         $menu_position = 5;
 
         $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\PassionPlugins\CustomPostType;
+namespace App\WordpressAPIPlugins\CustomPostType;
 
 /**
  * @author Keith Murphy || nomadmystics@gmail.com
- * Class CustomPostTaxonomies
- * @package App\PassionPlugins\CustomPostType
+ * @class  CustomPostTaxonomies
+ * @package App\WordpressAPIPlugins\CustomPostType
  */
 
 class CustomPostTaxonomies
@@ -17,8 +17,7 @@ class CustomPostTaxonomies
      */
     public function init()
     {
-        add_action('init', [&$this, 'create_passion_faqs_tax']);
-        add_action('init', [&$this, 'create_passion_slides_tax']);
+        add_action('init', [&$this, 'create_api_current_exhibits_tax']);
     }
 
 	/**
@@ -38,7 +37,7 @@ class CustomPostTaxonomies
         String $name,
         String $singular_name,
         String $rewrite_slug,
-        String $textdomain = 'passion'
+        String $textdomain = 'api'
     ):void {
         // Add new taxonomy, make it hierarchical (like categories)
         $labels = [
@@ -70,32 +69,16 @@ class CustomPostTaxonomies
 
     /**
      * @author Keith Murphy || nomadmystics@gmail.com
-     * @description Creates a custom taxonomy for Passion FAQs custom post type
+     * @description Creates a custom taxonomy for Current Exhibits custom post type
      * @return void
      */
-    public function create_passion_faqs_tax():void
+    public function create_api_current_exhibits_tax():void
     {
-        $post_type = 'passion_faqs';
-        $taxonomy = 'passion_faqs';
-        $name = 'Passion FAQs Taxonomies';
-        $singular_name = 'Passion FAQ Taxonomy';
-		$rewrite_slug = 'passion-faqs-tax';
-
-        $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name, $rewrite_slug);
-    }
-
-    /**
-     * @author Keith Murphy || nomadmystics@gmail.com
-     * @description Creates a custom taxonomy for Passion Slides custom post type
-     * @return void
-     */
-    public function create_passion_slides_tax():void
-    {
-        $post_type = 'passion_slides';
-        $taxonomy = 'passion_slides';
-        $name = 'Passion Slides Taxonomies';
-        $singular_name = 'Passion Slide Taxonomy';
-		$rewrite_slug = 'passion-slides-tax';
+        $post_type = 'current_exhibits';
+        $taxonomy = 'current_exhibits';
+        $name = 'Current Exhibits Taxonomies';
+        $singular_name = 'Current Exhibits Taxonomy';
+		$rewrite_slug = 'current-exhibits--tax';
 
         $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name, $rewrite_slug);
     }
