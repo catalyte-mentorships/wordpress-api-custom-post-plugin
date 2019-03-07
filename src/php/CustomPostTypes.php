@@ -15,7 +15,8 @@ class CustomPostTypes
      */
     public function init():void
     {
-        add_action('init', [&$this, 'create_api_current_exhibits_posts']);
+	    add_action('init', [&$this, 'create_api_current_exhibits_posts']);
+	    add_filter('use_block_editor_for_post_type', [&$this, 'disable_block_editor'], 100, 2);
     }
 
     /**
@@ -86,5 +87,14 @@ class CustomPostTypes
         $menu_position = 5;
 
         $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);
+    }
+
+    public function disable_block_editor ($use_block_editor, $post_type)
+    {
+    	if ('current_exhibits' == $post_type) {
+    		return false;
+	    }
+
+    	return $use_block_editor;
     }
 }
