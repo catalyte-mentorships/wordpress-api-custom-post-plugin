@@ -17,6 +17,7 @@ class CustomPostTypes
     {
 	    add_action('init', [&$this, 'create_api_current_exhibits_posts']);
 	    add_filter('use_block_editor_for_post_type', [&$this, 'disable_block_editor'], 100, 2);
+	    add_action('init', [&$this, 'create_api_whats_on_posts']);
     }
 
     /**
@@ -76,7 +77,7 @@ class CustomPostTypes
      * @description This will build the custom post type for Current Exhibits that can be called from the Wordpress API
      * @return void
      */
-    public function create_api_current_exhibits_posts():void
+    public function create_api_current_exhibits_posts (): void
     {
         $post_type = 'current_exhibits';
         $name = __('Current Exhibits');
@@ -97,4 +98,22 @@ class CustomPostTypes
 
     	return $use_block_editor;
     }
+
+	/**
+	 * @author Keith Murphy || nomadmystics@gmail.com
+	 * @description This will build the custom post type for Current Exhibits that can be called from the Wordpress API
+	 * @return void
+	 */
+	public function create_api_whats_on_posts (): void
+	{
+		$post_type = 'whats_on';
+		$name = __('Whats ons');
+		$singular_name = __('Whats on');
+		$is_public = true;
+		$has_archive = true;
+		$rewrite_slug = 'whats-on-post';
+		$menu_position = 5;
+
+		$this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);
+	}
 }

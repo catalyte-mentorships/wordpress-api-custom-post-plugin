@@ -18,6 +18,7 @@ class CustomPostTaxonomies
     public function init()
     {
         add_action('init', [&$this, 'create_api_current_exhibits_tax']);
+        add_action('init', [&$this, 'create_api_whats_on_tax']);
     }
 
 	/**
@@ -82,4 +83,20 @@ class CustomPostTaxonomies
 
         $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name, $rewrite_slug);
     }
+
+	/**
+	 * @author Keith Murphy || nomadmystics@gmail.com
+	 * @description Creates a custom taxonomy for Whats On custom post type
+	 * @return void
+	 */
+	public function create_api_whats_on_tax():void
+	{
+		$post_type = 'whats_on';
+		$taxonomy = 'whats_on';
+		$name = 'Whats On Taxonomies';
+		$singular_name = 'Whats On Taxonomy';
+		$rewrite_slug = 'whats-on-tax';
+
+		$this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name, $rewrite_slug);
+	}
 }
