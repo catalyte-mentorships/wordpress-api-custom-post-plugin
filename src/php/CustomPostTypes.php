@@ -15,8 +15,8 @@ class CustomPostTypes
      */
     public function init():void
     {
-	    add_action('init', [&$this, 'create_api_current_exhibits_posts']);
-	    add_filter('use_block_editor_for_post_type', [&$this, 'disable_block_editor'], 100, 2);
+	    add_action('init', [&$this, 'create_api_discover_more_posts']);
+//	    add_filter('use_block_editor_for_post_type', [&$this, 'disable_block_editor'], 100, 2);
 	    add_action('init', [&$this, 'create_api_whats_on_posts']);
     }
 
@@ -77,27 +77,27 @@ class CustomPostTypes
      * @description This will build the custom post type for Current Exhibits that can be called from the Wordpress API
      * @return void
      */
-    public function create_api_current_exhibits_posts (): void
+    public function create_api_discover_more_posts (): void
     {
-        $post_type = 'current_exhibits';
-        $name = __('Current Exhibits');
-        $singular_name = __('Current Exhibit');
+        $post_type = 'discover_more';
+        $name = __('Discover Mores');
+        $singular_name = __('Discover More');
         $is_public = true;
         $has_archive = true;
-        $rewrite_slug = 'current-exhibits-post';
+        $rewrite_slug = 'discover-more-post';
         $menu_position = 5;
 
         $this->custom_post_factory($post_type, $name, $singular_name, $is_public, $has_archive, $rewrite_slug, $menu_position);
     }
 
-    public function disable_block_editor ($use_block_editor, $post_type)
-    {
-    	if ('current_exhibits' == $post_type) {
-    		return false;
-	    }
-
-    	return $use_block_editor;
-    }
+//    public function disable_block_editor ($use_block_editor, $post_type)
+//    {
+//    	if ('current_exhibits' == $post_type) {
+//    		return false;
+//	    }
+//
+//    	return $use_block_editor;
+//    }
 
 	/**
 	 * @author Keith Murphy || nomadmystics@gmail.com

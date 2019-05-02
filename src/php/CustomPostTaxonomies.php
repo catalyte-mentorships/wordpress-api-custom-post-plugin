@@ -17,7 +17,7 @@ class CustomPostTaxonomies
      */
     public function init()
     {
-        add_action('init', [&$this, 'create_api_current_exhibits_tax']);
+        add_action('init', [&$this, 'create_api_discover_more_tax']);
         add_action('init', [&$this, 'create_api_whats_on_tax']);
     }
 
@@ -70,16 +70,16 @@ class CustomPostTaxonomies
 
     /**
      * @author Keith Murphy || nomadmystics@gmail.com
-     * @description Creates a custom taxonomy for Current Exhibits custom post type
+     * @description Creates a custom taxonomy for Discover More custom post type
      * @return void
      */
-    public function create_api_current_exhibits_tax():void
+    public function create_api_discover_more_tax(): void
     {
-        $post_type = 'current_exhibits';
-        $taxonomy = 'current_exhibits';
-        $name = 'Current Exhibits Taxonomies';
-        $singular_name = 'Current Exhibits Taxonomy';
-		$rewrite_slug = 'current-exhibits--tax';
+        $post_type = 'discover_more';
+        $taxonomy = 'discover_more';
+        $name = 'Discover Mores Taxonomies';
+        $singular_name = 'Discover More Taxonomy';
+		$rewrite_slug = 'discover-more-tax';
 
         $this->custom_tax_factory($taxonomy, $post_type, $name, $singular_name, $rewrite_slug);
     }
@@ -89,7 +89,7 @@ class CustomPostTaxonomies
 	 * @description Creates a custom taxonomy for Whats On custom post type
 	 * @return void
 	 */
-	public function create_api_whats_on_tax():void
+	public function create_api_whats_on_tax(): void
 	{
 		$post_type = 'whats_on';
 		$taxonomy = 'whats_on';
